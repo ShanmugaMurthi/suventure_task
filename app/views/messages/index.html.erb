@@ -1,0 +1,51 @@
+<% if user_signed_in? %>
+<div class="jumbotron">
+    <div class="container">
+      </br></br>      
+</div>
+  </div>
+  
+<%else%>
+  <div class="jumbotron">
+    <div class="container">
+      <h1>Welcome!</h1>
+      <p>Login to get started.</p>
+      <p>
+        <%= link_to 'Login', new_user_session_path, class: 'btn btn-primary' %>
+
+        <%= link_to 'Sign Up',  new_user_registration_path, class: 'btn btn-primary' %>
+      </p>
+    </div>
+  </div>
+
+<%end%>
+
+<p id="notice"><%= notice %></p>
+
+<h1>Messages</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Message</th>
+      <th>Mesage detail</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @messages.each do |message| %>
+      <tr>
+        <td><%= message.message %></td>
+        <td><%= message.mesage_detail %></td>
+        <td><%= link_to 'Show', message %></td>
+        <td><%= link_to 'Edit', edit_message_path(message) %></td>
+        <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Message', new_message_path %>
